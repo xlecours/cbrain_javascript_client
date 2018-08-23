@@ -14,7 +14,7 @@
  */
 
 (function(factory) {
-  if (typeof define === 'function' && define.amd) {
+  if (typeof define === 'function' && false) {
     // AMD. Register as an anonymous module.
     define(['ApiClient', 'model/Bourreau', 'model/CbrainTask', 'model/DataProvider', 'model/Group', 'model/InlineResponse200', 'model/InlineResponse2001', 'model/InlineResponse2002', 'model/Parameters', 'model/Params', 'model/Params1', 'model/Tag', 'model/Tool', 'model/ToolConfig', 'model/User', 'model/Userfile', 'api/BourreauApi', 'api/DataProvidersApi', 'api/GroupsApi', 'api/SessionsApi', 'api/TagsApi', 'api/TasksApi', 'api/ToolConfigsApi', 'api/ToolsApi', 'api/UserfilesApi', 'api/UsersApi'], factory);
   } else if (typeof module === 'object' && module.exports) {
