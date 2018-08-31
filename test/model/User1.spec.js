@@ -30,7 +30,7 @@
   var instance;
 
   beforeEach(function() {
-    instance = new CbrainApi.ToolsApi();
+    instance = new CbrainApi.User1();
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,17 +49,19 @@
       object[property] = value;
   }
 
-  describe('ToolsApi', function() {
-    describe('toolsGet', function() {
-      it('should call toolsGet successfully', function(done) {
-        //uncomment below and update the code to test toolsGet
-        //instance.toolsGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
-      });
+  describe('User1', function() {
+    it('should create an instance of User1', function() {
+      // uncomment below and update the code to test User1
+      //var instane = new CbrainApi.User1();
+      //expect(instance).to.be.a(CbrainApi.User1);
     });
+
+    it('should have the property user (base name: "user")', function() {
+      // uncomment below and update the code to test the property user
+      //var instane = new CbrainApi.User1();
+      //expect(instance).to.be();
+    });
+
   });
 
 }));

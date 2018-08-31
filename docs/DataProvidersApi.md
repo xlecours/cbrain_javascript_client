@@ -1,6 +1,6 @@
 # CbrainApi.DataProvidersApi
 
-All URIs are relative to *https://portal.cbrain.mcgill.ca*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -57,12 +57,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="dataProvidersIdBrowseGet"></a>
 # **dataProvidersIdBrowseGet**
-> dataProvidersIdBrowseGet(id)
+> [FileInfo] dataProvidersIdBrowseGet(id)
 
 List the files on a Data Provider.
 
@@ -88,7 +88,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.dataProvidersIdBrowseGet(id, callback);
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**[FileInfo]**](FileInfo.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="dataProvidersIdDeletePost"></a>
@@ -173,7 +173,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="dataProvidersIdGet"></a>
@@ -226,7 +226,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="dataProvidersIdIsAliveGet"></a>
@@ -279,12 +279,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="dataProvidersIdRegisterPost"></a>
 # **dataProvidersIdRegisterPost**
-> dataProvidersIdRegisterPost(id, basenames, filetypes, authenticityToken)
+> InlineResponse2002 dataProvidersIdRegisterPost(id, basenames, filetypes, authenticityToken)
 
 Registers a file as a Userfile in CBRAIN.
 
@@ -305,9 +305,9 @@ var apiInstance = new CbrainApi.DataProvidersApi();
 
 var id = 56; // Number | The ID of the Data Provider to register files on.
 
-var basenames = ["[file1, file2]"]; // [String] | An array containing the filenames to register.
+var basenames = ["basenames_example"]; // [String] | An array containing the filenames to register.
 
-var filetypes = ["[SingleFile, SingleFile]"]; // [String] | An array containing the filetypes associated with the files to register
+var filetypes = ["filetypes_example"]; // [String] | An array containing the filetypes associated with the files to register
 
 var authenticityToken = "authenticityToken_example"; // String | The token returned by /session/new
 
@@ -316,7 +316,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.dataProvidersIdRegisterPost(id, basenames, filetypes, authenticityToken, callback);
@@ -327,13 +327,13 @@ apiInstance.dataProvidersIdRegisterPost(id, basenames, filetypes, authenticityTo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| The ID of the Data Provider to register files on. | 
- **basenames** | [**[String]**](String.md)| An array containing the filenames to register. | [default to [file1, file2]]
- **filetypes** | [**[String]**](String.md)| An array containing the filetypes associated with the files to register | [default to [SingleFile, SingleFile]]
+ **basenames** | [**[String]**](String.md)| An array containing the filenames to register. | 
+ **filetypes** | [**[String]**](String.md)| An array containing the filetypes associated with the files to register | 
  **authenticityToken** | **String**| The token returned by /session/new | 
 
 ### Return type
 
-null (empty response body)
+[**InlineResponse2002**](InlineResponse2002.md)
 
 ### Authorization
 

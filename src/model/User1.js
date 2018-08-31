@@ -16,32 +16,32 @@
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['ApiClient'], factory);
+    define(['ApiClient', 'model/User'], factory);
   } else if (typeof module === 'object' && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('../ApiClient'));
+    module.exports = factory(require('../ApiClient'), require('./User'));
   } else {
     // Browser globals (root is window)
     if (!root.CbrainApi) {
       root.CbrainApi = {};
     }
-    root.CbrainApi.InlineResponse200 = factory(root.CbrainApi.ApiClient);
+    root.CbrainApi.User1 = factory(root.CbrainApi.ApiClient, root.CbrainApi.User);
   }
-}(this, function(ApiClient) {
+}(this, function(ApiClient, User) {
   'use strict';
 
 
 
 
   /**
-   * The InlineResponse200 model module.
-   * @module model/InlineResponse200
+   * The User1 model module.
+   * @module model/User1
    * @version 5.0.2
    */
 
   /**
-   * Constructs a new <code>InlineResponse200</code>.
-   * @alias module:model/InlineResponse200
+   * Constructs a new <code>User1</code>.
+   * @alias module:model/User1
    * @class
    */
   var exports = function() {
@@ -51,27 +51,27 @@
   };
 
   /**
-   * Constructs a <code>InlineResponse200</code> from a plain JavaScript object, optionally creating a new instance.
+   * Constructs a <code>User1</code> from a plain JavaScript object, optionally creating a new instance.
    * Copies all relevant properties from <code>data</code> to <code>obj</code> if supplied or a new instance if not.
    * @param {Object} data The plain JavaScript object bearing properties of interest.
-   * @param {module:model/InlineResponse200} obj Optional instance to populate.
-   * @return {module:model/InlineResponse200} The populated <code>InlineResponse200</code> instance.
+   * @param {module:model/User1} obj Optional instance to populate.
+   * @return {module:model/User1} The populated <code>User1</code> instance.
    */
   exports.constructFromObject = function(data, obj) {
     if (data) {
       obj = obj || new exports();
 
-      if (data.hasOwnProperty('user_id')) {
-        obj['user_id'] = ApiClient.convertToType(data['user_id'], 'Number');
+      if (data.hasOwnProperty('user')) {
+        obj['user'] = User.constructFromObject(data['user']);
       }
     }
     return obj;
   }
 
   /**
-   * @member {Number} user_id
+   * @member {module:model/User} user
    */
-  exports.prototype['user_id'] = undefined;
+  exports.prototype['user'] = undefined;
 
 
 

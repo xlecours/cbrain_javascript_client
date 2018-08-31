@@ -1,4 +1,4 @@
-# CbrainApi.User
+# CbrainApi.User1
 
 ## Properties
 Name | Type | Description | Notes

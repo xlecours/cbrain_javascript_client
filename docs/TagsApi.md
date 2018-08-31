@@ -1,6 +1,6 @@
 # CbrainApi.TagsApi
 
-All URIs are relative to *https://portal.cbrain.mcgill.ca*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -55,12 +55,12 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tagsIdDelete"></a>
 # **tagsIdDelete**
-> tagsIdDelete(id, opts)
+> tagsIdDelete(id)
 
 Delete a tag.
 
@@ -81,9 +81,6 @@ var apiInstance = new CbrainApi.TagsApi();
 
 var id = 56; // Number | ID of the tag to delete.
 
-var opts = { 
-  'params': new CbrainApi.Params1() // Params1 | 
-};
 
 var callback = function(error, data, response) {
   if (error) {
@@ -92,7 +89,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.tagsIdDelete(id, opts, callback);
+apiInstance.tagsIdDelete(id, callback);
 ```
 
 ### Parameters
@@ -100,7 +97,6 @@ apiInstance.tagsIdDelete(id, opts, callback);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Number**| ID of the tag to delete. | 
- **params** | [**Params1**](Params1.md)|  | [optional] 
 
 ### Return type
 
@@ -112,7 +108,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tagsIdGet"></a>
@@ -165,12 +161,12 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tagsIdPut"></a>
 # **tagsIdPut**
-> tagsIdPut(authenticityToken, id, opts)
+> tagsIdPut(id, opts)
 
 Update a tag.
 
@@ -189,8 +185,6 @@ BrainPortalSession.apiKey = 'YOUR API KEY';
 
 var apiInstance = new CbrainApi.TagsApi();
 
-var authenticityToken = "authenticityToken_example"; // String | The token returned by /session/new
-
 var id = 56; // Number | ID of the tag to update.
 
 var opts = { 
@@ -205,14 +199,13 @@ var callback = function(error, data, response) {
     console.log('API called successfully.');
   }
 };
-apiInstance.tagsIdPut(authenticityToken, id, opts, callback);
+apiInstance.tagsIdPut(id, opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **authenticityToken** | **String**| The token returned by /session/new | 
  **id** | **Number**| ID of the tag to update. | 
  **tagName** | **String**| The new name for the Tag. | [optional] [default to NewTagName]
  **tagGroupId** | **Number**| The Group that the Tag will be used in. | [optional] [default to 1]
@@ -232,7 +225,7 @@ null (empty response body)
 
 <a name="tagsPost"></a>
 # **tagsPost**
-> Tag tagsPost(tagName, tagGroupId, authenticityToken)
+> Tag tagsPost(tagName, tagGroupId)
 
 Create a tag.
 
@@ -255,8 +248,6 @@ var tagName = "NewTag"; // String | The name of the Tag. No spaces or special ch
 
 var tagGroupId = 1; // Number | The Group that the Tag will be used in. All Users are part of Group 1
 
-var authenticityToken = "authenticityToken_example"; // String | The token returned by /session/new
-
 
 var callback = function(error, data, response) {
   if (error) {
@@ -265,7 +256,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.tagsPost(tagName, tagGroupId, authenticityToken, callback);
+apiInstance.tagsPost(tagName, tagGroupId, callback);
 ```
 
 ### Parameters
@@ -274,7 +265,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tagName** | **String**| The name of the Tag. No spaces or special chars allowed. | [default to NewTag]
  **tagGroupId** | **Number**| The Group that the Tag will be used in. All Users are part of Group 1 | [default to 1]
- **authenticityToken** | **String**| The token returned by /session/new | 
 
 ### Return type
 

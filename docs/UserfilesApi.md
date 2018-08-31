@@ -1,6 +1,6 @@
 # CbrainApi.UserfilesApi
 
-All URIs are relative to *https://portal.cbrain.mcgill.ca*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -130,7 +130,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="userfilesDeleteFilesPost"></a>
@@ -290,7 +290,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="userfilesIdContentGet"></a>
@@ -343,7 +343,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="userfilesIdDelete"></a>
@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="userfilesIdPut"></a>
