@@ -57,6 +57,11 @@
     this.authentications = {
       'BrainPortalSession': {type: 'apiKey', 'in': 'query', name: 'cbrain_api_token'}
     };
+
+    if (process.env.dev) {
+      this.authentications.BrainPortalSession.apiKey = process.env.JWT;
+    }
+
     /**
      * The default HTTP headers to be included for all API calls.
      * @type {Array.<String>}
