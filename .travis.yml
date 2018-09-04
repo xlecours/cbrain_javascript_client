@@ -7,7 +7,7 @@ install:
   - sudo apt-get update -q
   - sudo apt-get install -q virtualbox --fix-missing
   - sudo wget -nv https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.deb
-  - sudo dpkg -i vagrant_1.7.2_x86_64.deb
+  - sudo dpkg -i vagrant_2.1.4_x86_64.deb
   - bundle install
 scripts: {
   "test": "make test"
