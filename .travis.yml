@@ -3,11 +3,12 @@ node_js:
   - "iojs"
   - "6.1"
 install: 
+  # Install Vagrant
   - sudo apt-get update -q
   - sudo apt-get install -q virtualbox --fix-missing
-  - sudo wget -nv https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.deb
+  - wget -nv https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.deb
   - sudo dpkg -i vagrant_2.1.4_x86_64.deb
-  - bundle install
+  - vagrant -v
 scripts: {
   "test": "make test"
 }
