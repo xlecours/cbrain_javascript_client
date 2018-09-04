@@ -9,8 +9,11 @@ before_install:
   - wget -nv https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.deb
   - sudo dpkg -i vagrant_2.1.4_x86_64.deb
   - vagrant -v
+
   # Start vagrant
   - cd cbrain-vagrant
+  - vagrant plugin install vagrant-vbguest
+  - vagrant plugin install vagrant-disksize
   - vagrant up
   - vagrant ssh
   - cd cbrain/BrainPortal
