@@ -3,6 +3,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**authenticityToken** | **String** |  | [optional] 
+**userId** | **Number** |  | [optional] 
 
 

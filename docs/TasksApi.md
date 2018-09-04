@@ -1,6 +1,6 @@
 # CbrainApi.TasksApi
 
-All URIs are relative to *https://portal.cbrain.mcgill.ca*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -55,7 +55,7 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tasksIdDelete"></a>
@@ -112,12 +112,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tasksIdGet"></a>
 # **tasksIdGet**
-> tasksIdGet(id)
+> CbrainTask tasksIdGet(id)
 
 Get information on a Task.
 
@@ -143,7 +143,7 @@ var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
 apiInstance.tasksIdGet(id, callback);
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**CbrainTask**](CbrainTask.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tasksIdPut"></a>
@@ -232,12 +232,12 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 
 <a name="tasksPost"></a>
 # **tasksPost**
-> tasksPost(parameters)
+> [CbrainTask] tasksPost(opts)
 
 Create a new Task.
 
@@ -256,28 +256,29 @@ BrainPortalSession.apiKey = 'YOUR API KEY';
 
 var apiInstance = new CbrainApi.TasksApi();
 
-var parameters = new CbrainApi.Parameters(); // Parameters | 
-
+var opts = { 
+  'cbrainTask': new CbrainApi.CbrainTask() // CbrainTask | The task to create.
+};
 
 var callback = function(error, data, response) {
   if (error) {
     console.error(error);
   } else {
-    console.log('API called successfully.');
+    console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.tasksPost(parameters, callback);
+apiInstance.tasksPost(opts, callback);
 ```
 
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **parameters** | [**Parameters**](Parameters.md)|  | 
+ **cbrainTask** | [**CbrainTask**](CbrainTask.md)| The task to create. | [optional] 
 
 ### Return type
 
-null (empty response body)
+[**[CbrainTask]**](CbrainTask.md)
 
 ### Authorization
 
@@ -285,6 +286,6 @@ null (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/xml
 

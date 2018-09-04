@@ -1,6 +1,6 @@
 # CbrainApi.ToolsApi
 
-All URIs are relative to *https://portal.cbrain.mcgill.ca*
+All URIs are relative to *http://localhost:3001*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -51,6 +51,6 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded, multipart/form-data
  - **Accept**: application/json, application/xml
 

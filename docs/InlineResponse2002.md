@@ -3,7 +3,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sessionId** | **String** |  | [optional] 
-**userId** | **Number** |  | [optional] 
+**notice** | **String** |  | [optional] 
+**error** | **String** |  | [optional] 
+**newlyRegisteredUserfiles** | [**[Userfile]**](Userfile.md) |  | [optional] 
+**previouslyRegisteredUserfiles** | [**[Userfile]**](Userfile.md) |  | [optional] 
+**userfilesInTransit** | [**[Userfile]**](Userfile.md) |  | [optional] 
+**numUnregistered** | **Number** |  | [optional] 
+**numErased** | **Number** |  | [optional] 
 
 
