@@ -4,11 +4,11 @@ node_js:
 before_install: 
   # Install Vagrant
   - sudo apt-get update -q
+  - sudo apt-get install linux-generic linux-image-generic linux-headers-generic linux-signed-generic
   - sudo apt-get install -q virtualbox-dkms --fix-missing
   - wget -nv https://releases.hashicorp.com/vagrant/2.1.4/vagrant_2.1.4_x86_64.deb
   - sudo dpkg -i vagrant_2.1.4_x86_64.deb
   - vagrant -v
-  - 
 
   # Start vagrant
   - cd cbrain-vagrant
