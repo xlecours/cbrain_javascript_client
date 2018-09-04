@@ -12,18 +12,23 @@ Vagrant.configure(2) do |config|
   # config.vm.network "public_network"
   # config.vm.synced_folder "../data", "/vagrant_data"
 
-  required_plugins = %w( vagrant-vbguest vagrant-disksize )
-  _retry = false
-  required_plugins.each do |plugin|
-    unless Vagrant.has_plugin? plugin
-      system "vagrant plugin install #{plugin}"
-      _retry=true
-    end
-  end
+  #required_plugins = %w( vagrant-vbguest vagrant-disksize )
+  #_retry = false
+  #required_plugins.each do |plugin|
+  #  unless Vagrant.has_plugin? plugin
+  #    system "vagrant plugin install #{plugin}"
+  #    _retry=true
+  #  end
+  #end
 
-  if (_retry)
-      exec "vagrant " + ARGV.join(' ')
-  end 
+  #if (_retry)
+  #    exec "vagrant " + ARGV.join(' ')
+  #end 
+
+  vagrant plugin install vagrant-vbguest
+  vagrant plugin install vagrant-disksize
+
+  exec "vagrant " + ARGV.join(' ')
    
   config.disksize.size="10GB"
 
