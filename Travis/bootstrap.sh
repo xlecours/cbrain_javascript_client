@@ -23,8 +23,9 @@ test_script="cb_run_tests.sh" # the script for running the suite
 
 echo "Starting DB server as root"
 service mysqld start || exit 2
-echo "Testing cbrain api url"
-bash ./portscan.sh
 
 echo "find ."
 find .
+
+echo "Testing cbrain api url"
+bash /home/cbrain/cbrain_travis/Travis/portscan.sh
