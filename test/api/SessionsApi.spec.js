@@ -63,21 +63,27 @@
     describe('sessionGet', function() {
       it('should call sessionGet successfully', function(done) {
         //uncomment below and update the code to test sessionGet
-        instance.sessionGet(function(error) {
-          if (error) throw error;
-        expect().to.be();
-        });
+        //instance.sessionGet(function(error) {
+        //  if (error) throw error;
+        //  expect().to.be();
+        //});
         done();
       });
     });
     describe('sessionPost', function() {
+      this.timeout(15000);
       it('should call sessionPost successfully', function(done) {
-        //uncomment below and update the code to test sessionPost
-        //instance.sessionPost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
+        const username = 'api_test_user_1';
+        const password = 'api_test_password_1'
+
+        instance.sessionPost(username, password, function(error, data, response) {
+          console.log(error);
+          console.log(data);
+          console.log(response);
+          if (error) throw error;
+          expect().to.be();
+          done();
+        });
       });
     });
   });
