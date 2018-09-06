@@ -25,4 +25,7 @@ echo "Starting DB server as root"
 service mysqld start || exit 2
 echo "Testing cbrain api url"
 curl -v https://127.0.0.1/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v https://127.0.0.1:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v http://127.0.0.1/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v http://127.0.0.1:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
 
