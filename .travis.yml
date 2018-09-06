@@ -6,7 +6,7 @@ services:
   - docker
 before_install:
   - docker pull mcin/cbrain_travis:dev
-  - docker run -d -p 80:80 -v "`pwd -P`":/home/cbrain/cbrain_travis --name "cb_travis" --hostname=cb_travis mcin/cbrain_travis:dev
+  - docker run -d -p 443:443 -v "`pwd -P`":/home/cbrain/cbrain_travis --name "cb_travis" --hostname=cb_travis mcin/cbrain_travis:dev
   - docker ps -a 
   - docker logs cb_travis --follow
 “scripts”: {
