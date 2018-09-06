@@ -63,10 +63,10 @@
     describe('sessionGet', function() {
       it('should call sessionGet successfully', function(done) {
         //uncomment below and update the code to test sessionGet
-        //instance.sessionGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+        instance.sessionGet(function(error) {
+          if (error) throw error;
+        expect().to.be();
+        });
         done();
       });
     });
