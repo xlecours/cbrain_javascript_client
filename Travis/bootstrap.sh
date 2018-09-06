@@ -24,7 +24,19 @@ test_script="cb_run_tests.sh" # the script for running the suite
 echo "Starting DB server as root"
 service mysqld start || exit 2
 echo "Testing cbrain api url"
-nc -v cb_travis 80 &2>1
-nc -v cb_travis 443 &2>1
-nc -v cb_travis 3000 &2>1
-nc -v cb_travis 3001 &2>1
+
+#Defining the variables
+IP='cb_travis'
+firstport=1
+lastport=3100
+
+function portscan
+
+{
+for ((counter=$firstport; counter<=$lastport; counter++))
+do
+(echo >/dev/tcp/$IP/$counter) > /dev/null 2>&1 && echo “$counter open”
+done
+}
+
+portscan
