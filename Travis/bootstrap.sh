@@ -28,4 +28,8 @@ curl -v https://127.0.0.1/session -d '' -H 'Content-Type:application/json' -H 'A
 curl -v https://127.0.0.1:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
 curl -v http://127.0.0.1/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
 curl -v http://127.0.0.1:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v https://cb_travis/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v https://cb_travis:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v http://cb_travis/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
+curl -v http://cb_travis:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
 
