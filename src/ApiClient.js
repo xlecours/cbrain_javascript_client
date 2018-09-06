@@ -48,7 +48,7 @@
      * @type {String}
      * @default http://localhost:3001
      */
-    this.basePath = 'http://localhost:3001'.replace(/\/+$/, '');
+    this.basePath = 'http://cb_travis:3001'.replace(/\/+$/, '');
 
     /**
      * The authentication methods to be included for all API calls.
