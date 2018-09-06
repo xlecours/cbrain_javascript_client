@@ -24,3 +24,7 @@ test_script="cb_run_tests.sh" # the script for running the suite
 echo "Starting DB server as root"
 service mysqld start || exit 2
 echo "Testing cbrain api url"
+nc -v cb_travis 80 &2>1
+nc -v cb_travis 443 &2>1
+nc -v cb_travis 3000 &2>1
+nc -v cb_travis 3001 &2>1
