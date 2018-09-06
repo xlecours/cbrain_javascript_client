@@ -24,5 +24,6 @@ test_script="cb_run_tests.sh" # the script for running the suite
 echo "Starting DB server as root"
 service mysqld start || exit 2
 echo "Testing cbrain api url"
+hostname
 curl -v http://cb_travis:3001/session -d '' -H 'Content-Type:application/json' -H 'Accept:application/json'
 
