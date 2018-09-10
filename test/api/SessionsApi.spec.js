@@ -72,12 +72,13 @@
     });
     describe('sessionPost', function() {
       it('should call sessionPost successfully', function(done) {
-        //uncomment below and update the code to test sessionPost
-        //instance.sessionPost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
-        done();
+        instance.sessionPost('admin','Cbr@iN_308751',function(error, data, response) {
+          if (error) throw error;
+          expect(response.statusCode).to.be(200);
+          expect(data).to.have.property('user_id');
+          expect(data).to.have.property('cbrain_api_token');
+          done();
+        }).timeout(5000);;
       });
     });
   });
