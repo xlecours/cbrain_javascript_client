@@ -56,7 +56,6 @@
   }
 
   describe('SessionApi', function() {
-
     let instance;
 
     beforeEach(function() {
@@ -91,6 +90,13 @@
       });
     });
 
+    it('should call sessionGet and receive a 401' , function(done) {
+      instance.sessionGet(function(error,data,response) {
+        expect(error.status).to.be(401);
+        done();
+      });
+    });
+
     it('should call sessionPost successfully', function(done) {
       const credentials = CbrainApi.ApiClient.instance.userCredentials;
       instance.sessionPost(credentials.login,credentials.password,function(error, data, response) {
@@ -104,6 +110,8 @@
         expect(data.user_id).to.be(1);
         // There should be a cbrain_api_token property
         expect(data).to.have.property('cbrain_api_token');
+        // The token should be an hexadecimal string
+        expect(data.cbrain_api_token).to.match(/[a-f0-9]+/);
 
         done();
       });
