@@ -67,6 +67,7 @@
       instance.sessionGet(function(error,data,response) {
         if (error) throw error;
 
+        // The status code should be 200 
         expect(response.statusCode).to.be(200);
         // There should be a user_id property
         expect(data).to.have.property('user_id');
@@ -81,7 +82,7 @@
       instance.sessionDelete(function(error,data,response) {
         if (error) throw error;
 
-        // The status code hould be 200 
+        // The status code should be 200 
         expect(response.statusCode).to.be(200);
         // There should be no content in the response
         expect(data).to.be.null;
@@ -92,6 +93,7 @@
 
     it('should call sessionGet and receive a 401' , function(done) {
       instance.sessionGet(function(error,data,response) {
+        // The status code should be 401 
         expect(error.status).to.be(401);
         done();
       });
@@ -102,7 +104,7 @@
       instance.sessionPost(credentials.login,credentials.password,function(error, data, response) {
         if (error) throw error;
 
-        // The status code hould be 200 
+        // The status code should be 200 
         expect(response.statusCode).to.be(200);
         // There should be a user_id property
         expect(data).to.have.property('user_id');
