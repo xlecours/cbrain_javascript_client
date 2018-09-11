@@ -27,12 +27,6 @@
 }(this, function(expect, CbrainApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new CbrainApi.BourreauApi();
-  });
-
   var getProperty = function(object, getter, property) {
     // Use getter method if present; otherwise, get the property directly.
     if (typeof object[getter] === 'function')
@@ -50,23 +44,41 @@
   }
 
   describe('BourreauApi', function() {
-    describe('bourreauxGet', function() {
-      it('should call bourreauxGet successfully', function(done) {
-        //uncomment below and update the code to test bourreauxGet
-        //instance.bourreauxGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+    let instance;
+
+    beforeEach(function() {
+      instance = new CbrainApi.BourreauApi();
+    });
+
+    it('should call bourreauxGet successfully', function(done) {
+      instance.bourreauxGet(function(error,data,response) {
+        if (error) throw error;
+
+        // The status code should be 200 
+        expect(response.statusCode).to.be(200);
+        // The response body should be an array of length 2
+        expect(data).to.be.a(Array);
+        expect(data).to.have.length(2);
+
         done();
       });
     });
-    describe('bourreauxIdGet', function() {
-      it('should call bourreauxIdGet successfully', function(done) {
-        //uncomment below and update the code to test bourreauxIdGet
-        //instance.bourreauxIdGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call bourreauxIdGet successfully', function(done) {
+      instance.bourreauxIdGet(1,function(error, data, response) {
+        if (error) throw error;
+
+        // The status code should be 200 
+        expect(response.statusCode).to.be(200);
+        // Check for expected properties and values
+        expect(data).to.have.property('id', 1);
+        expect(data).to.have.property('name', 'CBRAINVagrant');
+        expect(data).to.have.property('user_id', 1);
+        expect(data).to.have.property('group_id', 1);
+        expect(data).to.have.property('online', 'true');
+        expect(data).to.have.property('read_only', 'false');
+        expect(data).to.have.property('description', 'CBRAIN BrainPortal on host ubuntu-xenial');
+
         done();
       });
     });
