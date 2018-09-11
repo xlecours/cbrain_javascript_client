@@ -58,10 +58,10 @@
       'BrainPortalSession': {type: 'apiKey', 'in': 'query', name: 'cbrain_api_token'}
     };
 
-    if (process.env.dev) {
-      this.authentications.BrainPortalSession.apiKey = process.env.JWT;
-    }
-
+    this.userCredentials = {
+      'login': 'admin',
+      'password': 'Cbr@iN_308751'
+    };
     /**
      * The default HTTP headers to be included for all API calls.
      * @type {Array.<String>}
