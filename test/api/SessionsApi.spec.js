@@ -27,10 +27,16 @@
 }(this, function(expect, CbrainApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new CbrainApi.SessionsApi();
+  before(function(done) {
+    const credentials = CbrainApi.ApiClient.instance.userCredentials;
+    // This must run once before any other test in the whole testsuite.
+    (new CbrainApi.SessionsApi())
+      .sessionPost(credentials.login,credentials.password,function(error, data, response) {
+        if (error) throw error;
+        CbrainApi.ApiClient.instance.authentications.BrainPortalSession.apiKey = data.cbrain_api_token;
+        done();
+      }).timeout(5000); 
+    // We could add a check to see if the user's password need to be reset. (Default behavior of a new vagrant image)
   });
 
   var getProperty = function(object, getter, property) {
@@ -49,38 +55,60 @@
       object[property] = value;
   }
 
-  describe('SessionsApi', function() {
-    describe('sessionDelete', function() {
-      it('should call sessionDelete successfully', function(done) {
-        //uncomment below and update the code to test sessionDelete
-        //instance.sessionDelete(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+  describe('SessionApi', function() {
+
+    let instance;
+
+    beforeEach(function() {
+      instance = new CbrainApi.SessionsApi();
+    });
+
+
+    it('should call sessionGet successfully', function(done) {
+      instance.sessionGet(function(error,data,response) {
+        if (error) throw error;
+
+        expect(response.statusCode).to.be(200);
+        // There should be a user_id property
+        expect(data).to.have.property('user_id');
+        // User id should be 1 
+        expect(data.user_id).to.be(1);
+
+        done();
+      });
+    }).timeout(5000);
+
+    it('should call sessionDelete successfully', function(done) {
+      instance.sessionDelete(function(error,data,response) {
+        if (error) throw error;
+
+        // The status code hould be 200 
+        expect(response.statusCode).to.be(200);
+        // There should be no content in the response
+        expect(data).to.be.null;
+
         done();
       });
     });
-    describe('sessionGet', function() {
-      it('should call sessionGet successfully', function(done) {
-        //uncomment below and update the code to test sessionGet
-        //instance.sessionGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call sessionPost successfully', function(done) {
+      const credentials = CbrainApi.ApiClient.instance.userCredentials;
+      instance.sessionPost(credentials.login,credentials.password,function(error, data, response) {
+        if (error) throw error;
+
+        // The status code hould be 200 
+        expect(response.statusCode).to.be(200);
+        // There should be a user_id property
+        expect(data).to.have.property('user_id');
+        // User id should be 1 
+        expect(data.user_id).to.be(1);
+        // There should be a cbrain_api_token property
+        expect(data).to.have.property('cbrain_api_token');
+
         done();
       });
     });
-    describe('sessionPost', function() {
-      it('should call sessionPost successfully', function(done) {
-        instance.sessionPost('admin','Cbr@iN_308751',function(error, data, response) {
-          if (error) throw error;
-          expect(response.statusCode).to.be(200);
-          expect(data).to.have.property('user_id');
-          expect(data).to.have.property('cbrain_api_token');
-          done();
-        }).timeout(5000);;
-      });
-    });
+
   });
 
 }));
