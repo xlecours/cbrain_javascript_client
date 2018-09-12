@@ -27,12 +27,6 @@
 }(this, function(expect, CbrainApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new CbrainApi.DataProvidersApi();
-  });
-
   var getProperty = function(object, getter, property) {
     // Use getter method if present; otherwise, get the property directly.
     if (typeof object[getter] === 'function')
@@ -50,73 +44,104 @@
   }
 
   describe('DataProvidersApi', function() {
-    describe('dataProvidersGet', function() {
-      it('should call dataProvidersGet successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersGet
-        //instance.dataProvidersGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+    let instance;
+
+    beforeEach(function() {
+      instance = new CbrainApi.DataProvidersApi();
+    });
+
+    it('should call dataProvidersGet successfully', function(done) {
+      instance.dataProvidersGet(function(error, data, response) {
+        if (error) throw error;
+        // The status code should be 200
+        expect(response.status).to.be(200);
+        // The response body should be an array of length 4
+        expect(data).to.be.a(Array);
+        expect(data).to.have.length(4);
+        // TODO :: Return type [DataProvider]
         done();
       });
     });
-    describe('dataProvidersIdBrowseGet', function() {
-      it('should call dataProvidersIdBrowseGet successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersIdBrowseGet
-        //instance.dataProvidersIdBrowseGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call dataProvidersIdBrowseGet and receive a 403', function(done) {
+      instance.dataProvidersIdBrowseGet(1, function(error, data, response) {
+        // The status code should be 403 
+        // The GUI mentions that this DataProvider can't contain files.
+        expect(error.status).to.be(403);
         done();
       });
     });
-    describe('dataProvidersIdDeletePost', function() {
-      it('should call dataProvidersIdDeletePost successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersIdDeletePost
-        //instance.dataProvidersIdDeletePost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it.skip('dataProvidersIdBrowseGet: There is no files to test', function(done) {
+      // TODO :: dataProvidersIdBrowseGet
+      // Return type [FileInfo]
+    });
+
+    it.skip('dataProvidersIdDeletePost: There is no files to test', function(done) {
+      // TODO :: dataProvidersIdDeletePost
+      // Return type null (empty response body)
+    });
+
+    it('should call dataProvidersIdGet successfully', function(done) {
+      instance.dataProvidersIdGet(1, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        // TODO :: Return type DataProvider
         done();
       });
     });
-    describe('dataProvidersIdGet', function() {
-      it('should call dataProvidersIdGet successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersIdGet
-        //instance.dataProvidersIdGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call dataProvidersIdIsAliveGet successfully', function(done) {
+      instance.dataProvidersIdIsAliveGet(4, function(error, data, response) {
+        if (error) throw error;
+        // The status code should be 200
+        expect(response.status).to.be(200);
+        // TODO :: Return type String 
+        // TODO :: Remove the JSON parse by defining the return object in the swagger schema.
+        expect(JSON.parse(data)).to.have.property('is_alive', true);
         done();
       });
     });
-    describe('dataProvidersIdIsAliveGet', function() {
-      it('should call dataProvidersIdIsAliveGet successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersIdIsAliveGet
-        //instance.dataProvidersIdIsAliveGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call dataProvidersIdRegisterPost successfully', function(done) {
+      const id = 3;
+      const basenames = ["basenames_example"];
+      const filetypes = ["filetypes_example"];
+      const authenticityToken = '';
+      instance.dataProvidersIdRegisterPost(id, basenames, filetypes, authenticityToken, function(error ,data, response) {
+        // The status code should be 200
+        expect(response.status).to.be(200);
+        // TODO :: Return type InlineResponse2002
         done();
       });
     });
-    describe('dataProvidersIdRegisterPost', function() {
-      it('should call dataProvidersIdRegisterPost successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersIdRegisterPost
-        //instance.dataProvidersIdRegisterPost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call dataProvidersIdRegisterPost and receive a 403', function(done) {
+      const id = 1;
+      const basenames = ['basenames_example'];
+      const filetypes = ['filetypes_example'];
+      const authenticityToken = '';
+      instance.dataProvidersIdRegisterPost(id, basenames, filetypes, authenticityToken, function(error ,data, response) {
+        // The status code should be 403
+        expect(response.status).to.be(403);
+        expect(error.response.text).to.be('{"error":"You cannot register files from this provider."}');
+        // TODO :: Return type InlineResponse2002
         done();
       });
     });
-    describe('dataProvidersIdUnregisterPost', function() {
-      it('should call dataProvidersIdUnregisterPost successfully', function(done) {
-        //uncomment below and update the code to test dataProvidersIdUnregisterPost
-        //instance.dataProvidersIdUnregisterPost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call dataProvidersIdUnregisterPost successfully', function(done) {
+      const id = 3;
+      const basenames = ['basenames_example']; // [String] | An array containing the filenames to unregister.
+      const authenticityToken = ''; // String | The token returned by /session/new
+      const opts = { 
+        'asUserId': 1,
+        '_delete': false // TODO :: dataProvidersIdUnregisterPost option:_delete:false is not working :: https://github.com/aces/cbrain/issues/623
+      };
+      instance.dataProvidersIdUnregisterPost(id, basenames, authenticityToken, opts, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        expect(data).to.be.null;
         done();
       });
     });
