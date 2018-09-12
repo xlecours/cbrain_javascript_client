@@ -33,6 +33,7 @@
     (new CbrainApi.SessionsApi())
       .sessionPost(credentials.login,credentials.password,function(error, data, response) {
         if (error) throw error;
+        expect(data).to.have.property('cbrain_api_token');
         CbrainApi.ApiClient.instance.authentications.BrainPortalSession.apiKey = data.cbrain_api_token;
         done();
       }).timeout(5000); 
@@ -66,14 +67,14 @@
     it('should call sessionGet successfully', function(done) {
       instance.sessionGet(function(error,data,response) {
         if (error) throw error;
-
         // The status code should be 200 
         expect(response.statusCode).to.be(200);
         // There should be a user_id property
         expect(data).to.have.property('user_id');
         // User id should be 1 
         expect(data.user_id).to.be(1);
-
+        // TODO :: Return type InlineResponse200
+        // TODO :: Give a better name to InlineResponse200
         done();
       });
     }).timeout(5000);
@@ -81,12 +82,10 @@
     it('should call sessionDelete successfully', function(done) {
       instance.sessionDelete(function(error,data,response) {
         if (error) throw error;
-
         // The status code should be 200 
         expect(response.statusCode).to.be(200);
         // There should be no content in the response
         expect(data).to.be.null;
-
         done();
       });
     });
@@ -103,18 +102,16 @@
       const credentials = CbrainApi.ApiClient.instance.userCredentials;
       instance.sessionPost(credentials.login,credentials.password,function(error, data, response) {
         if (error) throw error;
-
         // The status code should be 200 
         expect(response.statusCode).to.be(200);
-        // There should be a user_id property
-        expect(data).to.have.property('user_id');
-        // User id should be 1 
-        expect(data.user_id).to.be(1);
+        // There should be a user_id property with a value of 1
+        expect(data).to.have.property('user_id', 1);
         // There should be a cbrain_api_token property
         expect(data).to.have.property('cbrain_api_token');
         // The token should be an hexadecimal string
         expect(data.cbrain_api_token).to.match(/[a-f0-9]+/);
-
+        // TODO :: Return type InlineResponse2001
+        // TODO :: Give a better name to InlineResponse2001
         done();
       });
     });
