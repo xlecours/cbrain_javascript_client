@@ -67,7 +67,7 @@
       //});
       done();
     });
-    it('should call tagsIdGet successfully', function(done) {
+    it.skip('should call tagsIdGet successfully', function(done) {
       //uncomment below and update the code to test tagsIdGet
       //instance.tagsIdGet(function(error) {
       //  if (error) throw error;
@@ -75,7 +75,7 @@
       //});
       done();
     });
-    it('should call tagsIdPut successfully', function(done) {
+    it.skip('should call tagsIdPut successfully', function(done) {
       //uncomment below and update the code to test tagsIdPut
       //instance.tagsIdPut(function(error) {
       //  if (error) throw error;
@@ -83,7 +83,7 @@
       //});
       done();
     });
-    it('should call tagsPost successfully', function(done) {
+    it.skip('should call tagsPost successfully', function(done) {
       //uncomment below and update the code to test tagsPost
       //instance.tagsPost(function(error) {
       //  if (error) throw error;
