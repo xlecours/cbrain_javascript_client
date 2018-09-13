@@ -27,12 +27,6 @@
 }(this, function(expect, CbrainApi) {
   'use strict';
 
-  var instance;
-
-  beforeEach(function() {
-    instance = new CbrainApi.GroupsApi();
-  });
-
   var getProperty = function(object, getter, property) {
     // Use getter method if present; otherwise, get the property directly.
     if (typeof object[getter] === 'function')
@@ -49,64 +43,101 @@
       object[property] = value;
   }
 
+  // TODO :: Groups that have Userfiles associated with them may not be deleted
+  // TODO :: groupsPost on duplicate returns Unprocessable Entity
+
   describe('GroupsApi', function() {
-    describe('groupsGet', function() {
-      it('should call groupsGet successfully', function(done) {
-        //uncomment below and update the code to test groupsGet
-        //instance.groupsGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+    let instance;
+
+    const alternatedGroupName = 'AlterGroupName';
+
+    let newGroup = CbrainApi.Group.constructFromObject({
+      name: 'NewGroupName',
+      type: 'a string', // TODO :: Enum ??
+      description: 'This new Group represents a new, exciting, possibly neuroscience-related Project.',
+    });
+
+    beforeEach(function() {
+      instance = new CbrainApi.GroupsApi();
+    });
+
+    it('should call groupsPost successfully', function(done) {
+      const authenticityToken = '';
+      const opts = { 
+        // 'groupSiteId': 1, TODO :: There is no Sites
+        'groupInvisible': false, // Boolean | Specifies whether to make the group invisible or not. Invisible groups exist solely to control access to resources.
+        'groupUserIds': [1] // [Number] | An array of IDs of Users that will be members of the new Group.
+      };
+
+      instance.groupsPost(newGroup.name, newGroup.description, authenticityToken, opts, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(201);
+        // TODO :: Return type null (empty response body)
+        // TODO :: Should probably return the new GroupId
+        // TODO :: The opt param should be taken from a Group Object
         done();
       });
     });
-    describe('groupsIdDelete', function() {
-      it('should call groupsIdDelete successfully', function(done) {
-        //uncomment below and update the code to test groupsIdDelete
-        //instance.groupsIdDelete(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call groupsGet successfully', function(done) {
+      instance.groupsGet(function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        expect(data).to.be.a(Array);
+        expect(data).to.have.length(3);
+        // TODO :: Return type [Group]
+
+        newGroup.id = data.filter(function(group) {
+          return group.name == newGroup.name;
+        })[0].id;
         done();
       });
     });
-    describe('groupsIdGet', function() {
-      it('should call groupsIdGet successfully', function(done) {
-        //uncomment below and update the code to test groupsIdGet
-        //instance.groupsIdGet(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call groupsIdPut successfully', function(done) {
+      const opts = { 
+        'groupName': alternatedGroupName,
+        'groupDescription': "This project will group all of the files for a large neuroscience study to figure out how the brain works once and for all.",
+        //'groupSiteId': 56, TODO :: Add Sites
+        'groupInvisible': false,
+        'groupUserIds': [1] 
+      };
+
+      instance.groupsIdPut(newGroup.id, opts, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
         done();
       });
     });
-    describe('groupsIdPut', function() {
-      it('should call groupsIdPut successfully', function(done) {
-        //uncomment below and update the code to test groupsIdPut
-        //instance.groupsIdPut(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call groupsIdGet successfully', function(done) {
+      instance.groupsIdGet(newGroup.id, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        expect(data.name).to.be(alternatedGroupName);
+        // TODO :: Return type Group
+console.log(data);
         done();
       });
     });
-    describe('groupsPost', function() {
-      it('should call groupsPost successfully', function(done) {
-        //uncomment below and update the code to test groupsPost
-        //instance.groupsPost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call groupsSwitchPost successfully', function(done) {
+      const authenticityToken = ''; // TODO :: Revove authenticityToken
+      instance.groupsSwitchPost(newGroup.id, authenticityToken, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        // Not sure how to test that
         done();
       });
     });
-    describe('groupsSwitchPost', function() {
-      it('should call groupsSwitchPost successfully', function(done) {
-        //uncomment below and update the code to test groupsSwitchPost
-        //instance.groupsSwitchPost(function(error) {
-        //  if (error) throw error;
-        //expect().to.be();
-        //});
+
+    it('should call groupsIdDelete successfully', function(done) {
+      const authenticityToken = ''; // TODO :: Revove authenticityToken
+      instance.groupsIdDelete(newGroup.id, authenticityToken, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        // TODO :: Return type null (empty response body)
+        // TODO :: Status code should be 204
         done();
       });
     });
