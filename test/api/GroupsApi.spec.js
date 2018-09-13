@@ -116,7 +116,6 @@
         expect(response.status).to.be(200);
         expect(data.name).to.be(alternatedGroupName);
         // TODO :: Return type Group
-console.log(data);
         done();
       });
     });
@@ -130,6 +129,17 @@ console.log(data);
         done();
       });
     });
+
+    it('should call groupsSwitchPost successfully', function(done) {
+      const authenticityToken = ''; // TODO :: Revove authenticityToken
+      instance.groupsSwitchPost(1, authenticityToken, function(error, data, response) {
+        if (error) throw error;
+        expect(response.status).to.be(200);
+        // Not sure how to test that
+        done();
+      });
+    });
+
 
     it('should call groupsIdDelete successfully', function(done) {
       const authenticityToken = ''; // TODO :: Revove authenticityToken
